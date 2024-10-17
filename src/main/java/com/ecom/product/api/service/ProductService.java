@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ProductService {
     public void creatProduct(RequsetProductDto dto, MultipartFile file);
     public void updateProduct(RequsetProductDto dto, String productId);
+    public void deleteProduct(String productId);
     public ResponseProductDto fundProductById(String productId);
     public ResponseProductPaginate searchAllProduct(String searchText, int page, int size);
     public void updateImage(String imageId, MultipartFile file);

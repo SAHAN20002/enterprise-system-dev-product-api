@@ -10,10 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -35,9 +32,52 @@ public class ProductController {
         );
 
     }
-    public void updateProduct(RequsetProductDto dto, String productId);
-    public ResponseProductDto fundProductById(String productId);
-    public ResponseProductPaginate searchAllProduct(String searchText, int page, int size);
-    public void updateImage(String imageId, MultipartFile file);
-    public void deleteImage(String imageId);
+    @PutMapping("/update/{productId}")
+    public ResponseEntity<StandardResponse> updateProduct( @RequestBody RequsetProductDto dto, @PathVariable String productId){
+        productService.updateProduct(dto, productId);
+        return  new ResponseEntity<>(
+                new StandardResponse(201, "Product updated ..", null),
+                HttpStatus.CREATED
+        );
+    }
+    @DeleteMapping("/delete/{productId}")
+    public ResponseEntity<StandardResponse> deleteProduct(@PathVariable String productId){
+        productService.deleteProduct(productId);
+        return  new ResponseEntity<>(
+                new StandardResponse(204, "Product deleted ..", null),
+                HttpStatus.NO_CONTENT
+        );
+    }
+    @GetMapping("/find-by-id/{productId}")
+    public ResponseEntity<StandardResponse> fundProductById( @PathVariable String productId){
+
+        return  new ResponseEntity<>(
+                new StandardResponse(200, "Product search by id ..",  productService.fundProductById(productId)),
+                HttpStatus.OK
+        );
+    }
+    @GetMapping("/search-product")
+    public ResponseEntity<StandardResponse> searchAllProduct(@RequestParam String searchText, @RequestParam int page, @RequestParam int size){
+
+        return  new ResponseEntity<>(
+                new StandardResponse(200, "Product search all ..",  productService.searchAllProduct(searchText, page, size)),
+                HttpStatus.CREATED
+        );
+    }
+    @PutMapping("/update-image/{imageId}")
+    public ResponseEntity<StandardResponse> updateImage( @PathVariable  String imageId,@RequestParam("image")  MultipartFile file){
+        productService.updateImage(imageId, file);
+        return  new ResponseEntity<>(
+                new StandardResponse(201, "Image updated..", null),
+                HttpStatus.CREATED
+        );
+    }
+    @PutMapping("/delete-image-by-id/{imageId}")
+    public ResponseEntity<StandardResponse> deleteImage(@PathVariable String imageId){
+        productService.deleteImage(imageId);
+        return  new ResponseEntity<>(
+                new StandardResponse(204, "Image deleted..", null),
+                HttpStatus.NO_CONTENT
+        );
+    }
 }
