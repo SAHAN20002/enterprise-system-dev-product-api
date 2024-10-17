@@ -1,10 +1,9 @@
 package com.ecom.product.api.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @Entity(name = "product")
 @Getter
@@ -23,7 +22,7 @@ public class Product {
     private double unitPrice;
     @Column(name = "qrt",nullable = false)
     private  int quantity;
-    @Embedded
-    private FileResourse fileResourse;
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Set<Images> images;
 
 }
