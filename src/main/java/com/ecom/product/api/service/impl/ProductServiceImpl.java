@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteImage(String imageId, MultipartFile file) {
+    public void deleteImage(String imageId) {
 
     }
 }

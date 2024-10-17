@@ -11,5 +11,5 @@ public interface ProductService {
     public ResponseProductDto fundProductById(String productId);
     public ResponseProductPaginate searchAllProduct(String searchText, int page, int size);
     public void updateImage(String imageId, MultipartFile file);
-    public void deleteImage(String imageId, MultipartFile file);
+    public void deleteImage(String imageId);
 }
