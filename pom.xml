@@ -60,11 +60,13 @@
 			<artifactId>aws-java-sdk</artifactId>
 			<version>1.12.765</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/software.amazon.awscdk/s3 -->
 		<dependency>
-			<groupId>software.amazon.awscdk</groupId>
+			<groupId>software.amazon.awssdk</groupId>
 			<artifactId>s3</artifactId>
-			<version>1.134.0</version>
+			<version>2.27.7</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-s3</artifactId>
@@ -74,6 +76,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-dynamodb</artifactId>
+			<version>1.12.765</version>
 		</dependency>
 	</dependencies>
 
